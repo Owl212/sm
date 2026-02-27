@@ -2,7 +2,11 @@ import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
 
-const DB_PATH = path.join(process.cwd(), "data", "students.db");
+// Use /tmp on Vercel (read-only filesystem), local data/ dir otherwise
+const isVercel = process.env.VERCEL === "1";
+const DB_PATH = isVercel
+  ? path.join("/tmp", "students.db")
+  : path.join(process.cwd(), "data", "students.db");
 
 // Ensure data directory exists
 const dataDir = path.dirname(DB_PATH);
