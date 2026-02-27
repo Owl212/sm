@@ -83,7 +83,11 @@ export default function EditStudentPage() {
           Modifier l&apos;étudiant
         </h1>
         <StudentForm
-          initialData={{ ...student, date_of_birth: student.date_of_birth ?? undefined }}
+          initialData={{
+            ...student,
+            date_of_birth: student.date_of_birth ?? undefined,
+            program: student.program ?? undefined,
+          }}
           onSubmit={handleSubmit}
           onCancel={() => router.push(`/students/${params.id}`)}
           isEditing
